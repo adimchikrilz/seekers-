@@ -142,7 +142,7 @@ nav.links a:hover::after{ transform:scaleX(1); }
 }
 .mobile-menu a.m-link:hover{ color:var(--oxblood); }
 .mobile-menu .m-phone{ display:flex; align-items:center; gap:10px; padding:16px 4px 6px; font-size:15px; font-weight:600; }
-.mobile-menu .btn-apply{ margin-top:12px; text-align:center; }
+.mobile-menu .btn-apply{ margin-top:12px; text-align:center; display:block; width:100%; }
 
 @media (max-width: 940px){
   nav.links{ display:none; }
@@ -150,6 +150,7 @@ nav.links a:hover::after{ transform:scaleX(1); }
   .navbar-right .phone{ display:none; }
   .hamburger{ display:flex; }
   .mobile-menu{ display:block; }
+  .navbar-right .btn-apply{ display:none; }
 }
 @media (max-width: 560px){
   .navbar{ padding:12px 20px; }
