@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
         <div className="foot-bottom">
           <span>© 2026 Seekers Group of Schools. All rights reserved.</span>
-          <span>Website design refresh — landing page concept</span>
+          {/* <span>Website design refresh — landing page concept</span> */}
         </div>
       </div>
     </footer>
