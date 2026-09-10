@@ -11,16 +11,16 @@ import {
 } from "../components/forms/fieldConfigs";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
+const SECTIONS = [
+  personalInfoSection,
+  medicalRecordSection,
+  parentsInfoSection,
+  guardianInfoSection,
+];
+
 export default function EAdmissionPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   useScrollReveal(rootRef);
-
-  const sections = [
-    personalInfoSection(false),
-    medicalRecordSection,
-    parentsInfoSection,
-    guardianInfoSection,
-  ];
 
   return (
     <div ref={rootRef}>
@@ -36,8 +36,8 @@ export default function EAdmissionPage() {
       <section className="section">
         <AdmissionFormRenderer
           title="e-Admission"
-          intro="Complete the form below to apply for admission into Seekers Group of Schools."
-          sections={sections}
+          intro="Complete the form below to apply for admission into Seekers Group of Schools. It's split into four short steps, so you can take it one part at a time."
+          sections={SECTIONS}
         />
       </section>
       <Footer />

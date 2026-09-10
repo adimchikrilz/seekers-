@@ -8,12 +8,12 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const STEPS = [
   {
-    title: "Pick up the form",
-    body: "Choose e-Admission or e-Admission 2 below and fill in your child's details online — no paper forms needed.",
+    title: "Fill the form",
+    body: "Complete the e-Admission form online — it's split into four short steps, so it only takes a few minutes at a time.",
   },
   {
     title: "Upload documents",
-    body: "Attach a recent passport photograph, and — for e-Admission 2 — a merged PDF/Word file of supporting documents.",
+    body: "Attach a recent passport photograph as part of the personal information step.",
   },
   {
     title: "Submit for review",
@@ -55,35 +55,12 @@ export default function AdmissionsPage() {
             <h2>Admissions are open for the 2026/2027 session.</h2>
             <p>
               We welcome applications from Crèche through to Senior Secondary School (SS3).
-              Choose one of the application forms below to get started — e-Admission for a
-              standard application, or e-Admission 2 if you'd like to include a merged document
-              upload alongside state and local government details.
+              Applying online takes just a few minutes, split into four short, manageable
+              steps — personal details, medical record, and parent or guardian information.
             </p>
-          </div>
-
-          <div className="admission-choice-grid">
-            <div className="admission-choice-card reveal reveal-left">
-              <span className="fac-index">Standard</span>
-              <h3>e-Admission</h3>
-              <p>
-                The core application form — personal details, medical record, and parent or
-                guardian information.
-              </p>
-              <Link to="/admissions/e-admission" className="btn-primary">
-                Start e-Admission
-              </Link>
-            </div>
-            <div className="admission-choice-card reveal reveal-right">
-              <span className="fac-index">Extended</span>
-              <h3>e-Admission 2</h3>
-              <p>
-                Everything in the standard form, plus state / local government details and a
-                combined document upload (PDF or Word, up to 5MB).
-              </p>
-              <Link to="/admissions/e-admission-2" className="btn-primary">
-                Start e-Admission 2
-              </Link>
-            </div>
+            <Link to="/admissions/e-admission" className="btn-primary" style={{ marginTop: 22 }}>
+              Start Your Application
+            </Link>
           </div>
         </div>
       </section>
@@ -131,6 +108,9 @@ export default function AdmissionsPage() {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+              <Link to="/admissions/e-admission" className="btn-primary" style={{ marginTop: 26 }}>
+                Start Your Application
+              </Link>
             </div>
           </div>
         </div>

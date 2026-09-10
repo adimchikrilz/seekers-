@@ -28,13 +28,13 @@ export const COUNTRIES: string[] = [
   "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe",
 ];
 
-export const NIGERIAN_STATES: string[] = [
-  "Abuja (FCT)", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue",
-  "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa",
-  "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun",
-  "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara",
-  "Outside Nigeria",
-];
+// export const NIGERIAN_STATES: string[] = [
+//   "Abuja (FCT)", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue",
+//   "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa",
+//   "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun",
+//   "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara",
+//   "Outside Nigeria",
+// ];
 
 export const CLASS_OPTIONS: string[] = [
   "Crèche", "Nursery 1", "Nursery 2", "KG 1", "KG 2", "Reception",

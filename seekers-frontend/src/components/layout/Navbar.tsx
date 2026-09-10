@@ -23,7 +23,7 @@ const NAV_LINKS: NavItem[] = [
     children: [
       { href: "/admissions", label: "Admission" },
       { href: "/admissions/e-admission", label: "e-Admission" },
-      { href: "/admissions/e-admission-2", label: "e-Admission 2" },
+      // { href: "/admissions/e-admission-2", label: "e-Admission 2" },
     ],
   },
   { href: "/#facilities", label: "Facilities" },

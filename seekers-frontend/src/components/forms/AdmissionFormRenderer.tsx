@@ -108,21 +108,40 @@ export default function AdmissionFormRenderer({
   title,
   intro,
   sections,
-  submitLabel = "Submit",
+  submitLabel = "Submit Application",
 }: AdmissionFormRendererProps) {
   const [values, setValues] = useState<Record<string, string>>({});
+  const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+
+  const isLastStep = step === sections.length - 1;
+  const currentSection = sections[step];
 
   const handleChange = (name: string, value: string) =>
     setValues((prev) => ({ ...prev, [name]: value }));
 
-  const handleReset = () => setValues({});
+  const handleReset = () => {
+    setValues({});
+    setStep(0);
+  };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // No backend is wired up yet — see src/api/client.ts for the fetch
-    // wrapper this should eventually POST to (guarded by VITE_USE_MOCKS).
-    setSubmitted(true);
+    // Only the fields on the CURRENT step are in the DOM, so this native
+    // validation only checks what's visible on screen right now.
+    if (isLastStep) {
+      // No backend is wired up yet — see src/api/client.ts for the fetch
+      // wrapper this should eventually POST to (guarded by VITE_USE_MOCKS).
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      setStep((s) => s + 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleBack = () => {
+    setStep((s) => Math.max(0, s - 1));
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -136,7 +155,7 @@ export default function AdmissionFormRenderer({
             . This is a demo form — no data has actually been submitted anywhere yet. Connect it
             to a real endpoint via <code>src/api/client.ts</code> when the backend is ready.
           </p>
-          <button className="btn-primary" onClick={() => setSubmitted(false)}>
+          <button className="btn-primary" onClick={() => { setSubmitted(false); handleReset(); }}>
             Fill Another Application
           </button>
         </div>
@@ -146,16 +165,30 @@ export default function AdmissionFormRenderer({
 
   return (
     <div className="wrap">
-      <form className="admission-form reveal visible" onSubmit={handleSubmit}>
+      <div className="admission-form reveal visible">
         {intro && <p className="form-intro">{intro}</p>}
         <p className="form-note">Note: fields marked with an asterisk (*) are required.</p>
 
-        {sections.map((section) => (
-          <div className="form-section" key={section.title}>
-            <h3>{section.title}</h3>
-            {section.note && <p className="form-section-note">{section.note}</p>}
+        <div className="form-progress">
+          {sections.map((section, i) => (
+            <div
+              className={`form-progress-step${i === step ? " active" : ""}${
+                i < step ? " done" : ""
+              }`}
+              key={section.title}
+            >
+              <span className="form-progress-dot">{i < step ? "✓" : i + 1}</span>
+              <span className="form-progress-label">{section.title}</span>
+            </div>
+          ))}
+        </div>
+
+        <form onSubmit={handleFormSubmit}>
+          <div className="form-section">
+            <h3>{currentSection.title}</h3>
+            {currentSection.note && <p className="form-section-note">{currentSection.note}</p>}
             <div className="form-grid">
-              {section.fields.map((field) => (
+              {currentSection.fields.map((field) => (
                 <div
                   className={`form-field${isFullWidth(field.type) ? " form-field-full" : ""}`}
                   key={field.name}
@@ -174,17 +207,22 @@ export default function AdmissionFormRenderer({
               ))}
             </div>
           </div>
-        ))}
 
-        <div className="form-actions">
-          <button type="submit" className="btn-submit">
-            {submitLabel}
-          </button>
-          <button type="button" className="btn-reset" onClick={handleReset}>
-            Reset
-          </button>
-        </div>
-      </form>
+          <div className="form-actions">
+            {step > 0 && (
+              <button type="button" className="btn-reset" onClick={handleBack}>
+                Back
+              </button>
+            )}
+            <button type="submit" className="btn-submit">
+              {isLastStep ? submitLabel : "Continue"}
+            </button>
+            <button type="button" className="btn-text-reset" onClick={handleReset}>
+              Reset form
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,81 +1,54 @@
 import type { FormSectionConfig } from "./types";
-import {
-  COUNTRIES,
-  NIGERIAN_STATES,
-  CLASS_OPTIONS,
-  RATING_OPTIONS,
-  GENOTYPE_OPTIONS,
-  BLOOD_GROUP_OPTIONS,
-} from "./formData";
+import { COUNTRIES, CLASS_OPTIONS, RATING_OPTIONS, GENOTYPE_OPTIONS, BLOOD_GROUP_OPTIONS } from "./formData";
 
-/** Personal Information section. Pass `includeStateLga` for the e-Admission 2 variant. */
-export function personalInfoSection(includeStateLga: boolean): FormSectionConfig {
-  return {
-    title: "Personal Information",
-    fields: [
-      { name: "surname", label: "Surname", type: "text", required: true },
-      { name: "firstName", label: "First Name", type: "text", required: true },
-      { name: "middleName", label: "Middle Name", type: "text" },
-      {
-        name: "gender",
-        label: "Gender",
-        type: "radio",
-        required: true,
-        options: ["Male", "Female"],
-      },
-      { name: "dob", label: "Date of Birth", type: "date", required: true },
-      {
-        name: "nationality",
-        label: "Nationality",
-        type: "select",
-        required: true,
-        options: COUNTRIES,
-      },
-      ...(includeStateLga
-        ? ([
-            {
-              name: "state",
-              label: "State",
-              type: "select",
-              required: true,
-              options: NIGERIAN_STATES,
-            },
-            {
-              name: "lga",
-              label: "Local Government Area / City",
-              type: "text",
-              required: true,
-            },
-          ] as const)
-        : []),
-      { name: "height", label: "Height (m)", type: "number", required: true, step: "0.01" },
-      { name: "weight", label: "Body Weight (kg)", type: "number", required: true },
-      { name: "familySize", label: "Family Size", type: "number" },
-      { name: "positionInFamily", label: "Position in Family", type: "text" },
-      { name: "lastSchool", label: "Name of Last School Attended", type: "text" },
-      {
-        name: "reasonForLeaving",
-        label: "Reason for Leaving Last School Attended",
-        type: "textarea",
-      },
-      {
-        name: "classSought",
-        label: "Class to Which Admission is Sought",
-        type: "select",
-        required: true,
-        options: CLASS_OPTIONS,
-      },
-      {
-        name: "passport",
-        label: "Passport Photograph",
-        type: "file",
-        required: true,
-        accept: "image/*",
-        help: "Image file must not exceed 1MB.",
-      },
-    ],
-  };
-}
+export const personalInfoSection: FormSectionConfig = {
+  title: "Personal Information",
+  fields: [
+    { name: "surname", label: "Surname", type: "text", required: true },
+    { name: "firstName", label: "First Name", type: "text", required: true },
+    { name: "middleName", label: "Middle Name", type: "text" },
+    {
+      name: "gender",
+      label: "Gender",
+      type: "radio",
+      required: true,
+      options: ["Male", "Female"],
+    },
+    { name: "dob", label: "Date of Birth", type: "date", required: true },
+    {
+      name: "nationality",
+      label: "Nationality",
+      type: "select",
+      required: true,
+      options: COUNTRIES,
+    },
+    { name: "height", label: "Height (m)", type: "number", required: true, step: "0.01" },
+    { name: "weight", label: "Body Weight (kg)", type: "number", required: true },
+    { name: "familySize", label: "Family Size", type: "number" },
+    { name: "positionInFamily", label: "Position in Family", type: "text" },
+    { name: "lastSchool", label: "Name of Last School Attended", type: "text" },
+    {
+      name: "reasonForLeaving",
+      label: "Reason for Leaving Last School Attended",
+      type: "textarea",
+    },
+    {
+      name: "classSought",
+      label: "Class to Which Admission is Sought",
+      type: "select",
+      required: true,
+      options: CLASS_OPTIONS,
+    },
+    {
+      name: "passport",
+      label: "Passport Photograph",
+      type: "file",
+      required: true,
+      accept: "image/*",
+      help: "Image file must not exceed 1MB.",
+    },
+  ],
+};
 
 export const medicalRecordSection: FormSectionConfig = {
   title: "Medical Record",
@@ -130,18 +103,5 @@ export const guardianInfoSection: FormSectionConfig = {
     { name: "guardianHomeAddress", label: "Guardian's Home Address", type: "textarea" },
     { name: "guardianPhone", label: "Guardian's Phone Number(s)", type: "tel" },
     { name: "guardianEmail", label: "Guardian's Email Address", type: "email" },
-  ],
-};
-
-export const admissionDocumentSection: FormSectionConfig = {
-  title: "Admission Document",
-  fields: [
-    {
-      name: "mergedDocument",
-      label: "Merge all documents into a single file",
-      type: "file",
-      accept: ".pdf,.doc,.docx",
-      help: "File must not exceed 5MB. Word/PDF file types only.",
-    },
   ],
 };
